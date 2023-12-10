@@ -1,0 +1,255 @@
+\documentclass{beamer}
+\usepackage{ctex}
+%\usepackage{graphicx}
+\usepackage{biblatex}
+\usepackage{csquotes}
+
+\addbibresource{main.bib}
+
+\title{函数式编程与程序语言理论简介（内容尚不完整）}
+\author{Shreck Ye}
+%\institute{四川大学2015级}
+\date{2023年12月}
+
+\begin{document}
+
+\maketitle
+
+
+
+\begin{frame}{编程语言的常见范式}
+
+    \cite{programming_paradigm_wikipedia}
+    \begin{itemize}
+        \item 命令式编程
+
+              the programmer instructs the machine how to change its state
+
+              包括常见的工业编程语言 C、C++、Java、JavaScript 等
+              \begin{itemize}
+                  \item 过程式编程
+                  \item 面向对象编程
+              \end{itemize}
+        \item 函数式编程
+
+              the desired result is declared as the value of a series of function applications
+        \item 逻辑编程
+
+              in which the desired result is declared as the answer to a question about a system of facts and rules
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{更具体地回答什么是函数式编程——一些显著特征}
+    \begin{itemize}
+        \item 不可变变量（由于不可变，“变量”在很多函数式语言中也叫做绑定（binding）或定义 （definition））
+        \item 表达式代替语句
+        \item 没有循环控制结构（for、while、goto 等）
+
+              问题：怎么样实现循环？
+    \end{itemize}
+
+    如果一门语言上面三者的要求都严格满足，那么这门语言可以被称作“纯”函数式编程语言。
+
+    根据以上内容很容易回答问题：为什么 C/C++、Java、Python、JavaScript 等一般不被称为函数式编程语言？
+\end{frame}
+
+\begin{frame}
+    \frametitle{函数式编程的一些历史}
+    \begin{itemize}
+        \item Alonzo Church（阿隆佐·邱奇）提出（无类型）Lambda 演算法\cite{lambda_calculus_wikipedia}
+
+              作者简介：函数式编程与程序语言理论的祖师爷、图灵在美国留学期间的导师
+
+              这可以看作函数式编程的理论起源。
+
+              Lambda calculus (also written as λ-calculus) is a formal system in mathematical logic for expressing computation based on function abstraction and application using variable binding and substitution.
+
+              邱奇-图灵论题：可（有效）计算的函数可以 = 图灵机可计算的函数 = 邱奇的 Lambda 演算可计算的函数
+
+        \item Lisp 语言
+
+        \item Can programming be liberated from the von Neumann style?: a functional style and its algebra of programs
+
+              作者 John Backus，简介：1977 年图灵奖得主、FORTRAN 语言的创造者
+
+              这可以看作在工业界应用函数式语言的起源。
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{函数式编程的一些概念}
+    \begin{itemize}
+        \item 头等函数（函数作为一等公民）
+        \item 高阶函数
+        \item Lambda表达式与闭包
+        \item 代数数据类型（ADT）与模式匹配
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{其他的一些概念}
+    %关注点分离
+
+    %纯函数式编程的简洁定义（不可变）
+    %Java可变的例子（见 Programming Languages, Part A）
+    %与数学惯例类比：阶乘、gcd
+    %递归（提一下尾递归）
+    %对比凸显elegance
+
+    %副作用的缺点例子->纯
+\end{frame}
+
+
+\begin{frame}{函数式编程在工业界的一些影响和应用}
+    虽然上述众多工业界语言不是函数式语言，但都在近年来逐渐支持了函数式编程这一范式，最显著的一些特性便是 lambda 表达式和类型参数/泛型（Java）/模板（C++）的支持。
+
+    常见的函数式编程语言有：Haskell、ML 系（Ocaml、Standard ML）、Scala、Lisp 语言及其各种变体、PureScript、F\#/F*
+
+    集合高阶函数/集合函数式API/面向表达式编程
+
+    问题：常见的一种编程需求是在一列元素里面找出需要的元素 -> filter
+    \begin{itemize}
+        \item map
+        \item filter
+        \item reduce
+    \end{itemize}
+
+    并行计算、分布式计算与大数据：Google MapReduce 与 Apache Spark
+
+    一个数学原理：reduce 与结合律和群论
+
+\end{frame}
+
+\begin{frame}{一些常见的争议话题}
+    一个大家比较认可的回答：
+    \begin{itemize}
+        \item 最好的编程语言是什么？
+              现在来讲，没有一个单一的最好的编程语言，特别是对于工程
+
+              普遍来讲，适合的就是最好的，适合体现在效率（开发效率与运行效率）、生态（第三方开源库生态与劳动力市场生态）等多方面
+
+        \item 程序语言的语法很重要吗？
+
+              语法的重要性并没有那么大，对语义的研究的重要性高于对语法的研究
+
+              Wadler 定律（Wadler's Law）\cite{wadlers_law_haskellwiki}：
+
+              \begin{displayquote}
+                  In any language design, the total time spent discussing a feature in this list is proportional to two raised to the power of its position.
+                  \begin{enumerate}
+                      \setcounter{enumi}{0}
+                      \item[0.] Semantics
+                      \item[1.] Syntax
+                      \item[2.] Lexical syntax
+                      \item[3.] Lexical syntax of comments
+                  \end{enumerate}
+              \end{displayquote}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{总结和建议}
+    \begin{itemize}
+        \item 为什么要用函数式编程？
+
+              优点：更为简洁、增加代码复用、让程序更容易分析、提高软件安全性（减少程序 bug）
+
+              增加代码复用的例子：提取函数类型参数的公共函数
+
+
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{推荐学习材料}
+    \begin{itemize}
+        \item 学习你所熟悉的语言的函数式编程教程
+        \item Coursera 课程
+              \begin{itemize}
+                  \item Programming Languages
+                  \item Functional Programming in Scala
+              \end{itemize}
+        \item 知乎博主与其上的 Haskell 等语言的教程
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{推荐的一些编程语言（含个人见解）}
+    希望学习函数式编程的特性与理论：
+    \begin{itemize}
+        \item[Haskell] 想学习函数式编程和其中的各种高级特性与体验惰性求值
+        \item[ML] 同上但不想要惰性求值
+        \item[Racket] Lisp 的现代版，动态类型函数式编程
+    \end{itemize}
+
+    将函数式编程应用到工程开发中：
+    \begin{itemize}
+        \item[Scala] 想要一门兼容多范式又简洁抽象的语言，能体验函数式编程的同时兼容面向对象编程与 Java 的生态（Spark、Kafka、Twitter 的实现语言，不过近年来发展比较颓势）
+        \item[Kotlin] 简化版的 Scala，现在的最大特性和主要目标是接近平台原生性能的多平台开发（服务器端、web、Android、iOS）
+        \item[TypeScript] 更加类型安全的 JavaScript
+        \item[Rust] 剪掉了很多冗杂特性且更加类型安全、内存安全的同时不牺牲性能的面向未来的 C++
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{更多}
+
+    语法糖的含义与讨论
+
+    可变性 + OOP 的封装在并发计算方面的缺陷
+
+    函数式编程现今的一些局限性和缺点：在一些地方性能较差、学习难度更大
+\end{frame}
+
+% TODO 分成两个幻灯片
+
+\begin{frame}
+    \frametitle{依赖类型语言与辅助证明}
+
+    Curry-Howard 对应：类型即命题，程序（实现）即证明
+\end{frame}
+
+\begin{frame}{依赖类型编程的一些实际应用}
+    带维数的矩阵、参数约束（对比 guarded programming）
+\end{frame}
+
+\begin{frame}{Lambda 立方}
+    值与类型的依赖关系
+\end{frame}
+
+\begin{frame}{数学归纳法的推广：结构归纳法}
+
+    第二数学归纳法的推广：良基归纳法
+\end{frame}
+
+\begin{frame}
+    \frametitle{与范畴论 的联系}
+
+    currying 与范畴论
+
+    Curry–Howard–Lambek 对应\cite{curry_howard_wikipedia}（Robert Harper 称为计算三位一体论（computational trinitarianism））：计算、逻辑、范畴/空间是看待数学基础的三种不同的角度。
+
+\end{frame}
+
+\begin{frame}{更多话题}
+    \begin{itemize}
+        \item[辅助证明与依赖类型语言] Coq、Agda、Lean、Idris、Epigram、Isabella 等等
+        \item[MLTT 与 Coc]
+        \item[同伦类型论（Homotopy Type Theory，简称 HoTT）与单价公理（Univalence Axiom）] 相等关系在依赖类型中被表示为想等类型，相等的证明被表示为相等类型的元素，那么相等类型的元素是否有多个？（以及它们与同伦群的关系）
+            能不能把同构的类型看作相等的？
+        \item[type case] 是否应该对类型进行模式匹配？
+        \item[定理自动证明] 有了辅助证明语言以后，是否可以对数学定理进行自动证明？它有那些局限性？（哥德尔不完备定理）现在大火的基于机器学习的 AI 能不能帮上忙？
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    程序语言理论与依赖类型相关的一些推荐内容：
+    \begin{itemize}
+        \item \href{https://infinity-type-cafe.github.io/ntype-cafe-summer-school/}{无穷类型咖啡（∞-type Café）暑假学校}
+        \item \href{https://www.codewars.com/}{Codewars} 上有一些很不错的各方面入门练习题
+    \end{itemize}
+\end{frame}
+
+\printbibliography
+
+\end{document}
